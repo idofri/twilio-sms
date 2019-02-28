@@ -1,0 +1,211 @@
+# Blank WordPress Pot
+# Copyright 2014 ...
+# This file is distributed under the GNU General Public License v3 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
+"POT-Creation-Date: 2019-02-28 14:54+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: he_IL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Textdomain-Support: yesX-Generator: Poedit 1.6.4\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;esc_html_e;esc_html_x:1,2c;esc_html__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;"
+"_nx_noop:4c,1,2;_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;"
+"__ngettext_noop:1,2;_c,_nc:4c,1,2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Generator: Poedit 2.2.1\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: src/Registration.php:107
+msgid "Verification completed successfully."
+msgstr "האימות הושלם בהצלחה."
+
+#: src/Registration.php:129
+msgid "The passwords do not match."
+msgstr "הסיסמאות לא תואמות."
+
+#: src/Registration.php:135
+msgid "<strong>ERROR</strong>: Enter a phone number."
+msgstr "<strong>שגיאה</strong>: נא למלא מספר טלפון."
+
+#: src/Registration.php:179
+msgid "Verification code is incorrect."
+msgstr "קוד האימות שגוי."
+
+#: src/Registration.php:190
+msgid "Phone Verification"
+msgstr "אימות טלפון"
+
+#: src/Registration.php:190
+msgid "Please type the verification code sent to you."
+msgstr "הזן את קוד האימות שנשלח אליך."
+
+#: src/Registration.php:194
+msgid "Verification Code"
+msgstr "קוד אימות"
+
+#: src/Registration.php:198
+msgid "Verify"
+msgstr "אימות"
+
+#: src/Registration.php:216
+msgid "Phone"
+msgstr "טלפון"
+
+#: src/Registration.php:221
+msgid "Password"
+msgstr "סיסמה"
+
+#: src/Registration.php:230
+msgid "Strength indicator"
+msgstr "חוזק סיסמה"
+
+#: src/Registration.php:235
+msgid "Confirm use of weak password"
+msgstr "אשר שימוש בסיסמה חלשה"
+
+#: src/Registration.php:240
+msgid "Confirm new password"
+msgstr "לאישור הסיסמה החדשה"
+
+#: src/Settings.php:24 src/Settings.php:25
+msgid "Twilio"
+msgstr "Twilio"
+
+#: src/Settings.php:34
+msgid "Twilio Settings"
+msgstr "הגדרות Twilio"
+
+#: src/Settings.php:40
+msgid "Verify Application API Key"
+msgstr "מפתח API אפליקציית אימות"
+
+#~ msgid "Registration complete."
+#~ msgstr "ההרשמה הושלמה בהצלחה."
+
+#~ msgid "Please enter your phone number for verification."
+#~ msgstr "הזן את מספר הטלפון שלך לאימות."
+
+#~ msgid "Location"
+#~ msgstr "ישוב"
+
+#~ msgid "Luggage"
+#~ msgstr "כבודה"
+
+#~ msgid "Date"
+#~ msgstr "תאריך"
+
+#~ msgid "Time"
+#~ msgstr "שעה"
+
+#~ msgid "Rate: From"
+#~ msgstr "תעריף: חזור"
+
+#~ msgid "Price can not be displayed for this region"
+#~ msgstr "אין אפשרות להציג מחיר לאזור זה"
+
+#~ msgid "Rate: List"
+#~ msgstr "טבלת תעריפים"
+
+#~ msgid "Rate: To"
+#~ msgstr "תעריף: הלוך"
+
+#~ msgid "Time of day"
+#~ msgstr "זמן ביום"
+
+#~ msgid "Dynamic"
+#~ msgstr "דינמי"
+
+#~ msgid "Day"
+#~ msgstr "יום"
+
+#~ msgid "Night"
+#~ msgstr "לילה"
+
+#~ msgid "Shuttle Fields"
+#~ msgstr "שדות מחשבון"
+
+#~ msgid "No results matched"
+#~ msgstr "לא נמצאו תוצאות תואמות"
+
+#~ msgctxt "post type general name"
+#~ msgid "Locations"
+#~ msgstr "ישובים"
+
+#~ msgctxt "post type singular name"
+#~ msgid "Location"
+#~ msgstr "ישוב"
+
+#~ msgctxt "admin menu"
+#~ msgid "Locations"
+#~ msgstr "ישובים"
+
+#~ msgctxt "add new on admin bar"
+#~ msgid "Location"
+#~ msgstr "ישוב"
+
+#~ msgctxt "location"
+#~ msgid "Add New"
+#~ msgstr "הוספת ישוב חדש"
+
+#~ msgid "Add New Location"
+#~ msgstr "הוספת ישוב חדש"
+
+#~ msgid "New Location"
+#~ msgstr "הוספת ישוב חדש"
+
+#~ msgid "Edit Location"
+#~ msgstr "עריכת ישוב"
+
+#~ msgid "View Location"
+#~ msgstr "הצגת ישוב"
+
+#~ msgid "All Locations"
+#~ msgstr "כל הישובים"
+
+#~ msgid "Search Locations"
+#~ msgstr "חיפוש ישובים"
+
+#~ msgid "No locations found."
+#~ msgstr "לא נמצאו ישובים."
+
+#~ msgid "No locations found in Trash."
+#~ msgstr "לא נמצאו ישובים בפח."
+
+#~ msgid "Rates"
+#~ msgstr "תעריפים"
+
+#~ msgid "From Airport"
+#~ msgstr "משדה התעופה"
+
+#~ msgid "To Airport"
+#~ msgstr "לשדה התעופה"
+
+#~ msgid "Day Rate To"
+#~ msgstr "תעריף: הלוך יום"
+
+#~ msgid "Night Rate To"
+#~ msgstr "תעריף: הלוך לילה"
+
+#~ msgid "Day Rate From"
+#~ msgstr "תעריף: חזור יום"
+
+#~ msgid "Night Rate From"
+#~ msgstr "תעריף: חזור לילה"
+
+#~ msgid "All"
+#~ msgstr "הכל"
+
+#~ msgid "Pickup"
+#~ msgstr "תאריך איסוף"
+
+#~ msgid "Total"
+#~ msgstr "סה\"כ"

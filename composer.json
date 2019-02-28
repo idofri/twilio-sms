@@ -1,0 +1,8 @@
+{
+    "require": {
+        "authy/php": "^3.0"
+    },
+	"autoload": {
+        "psr-4": {"Twilio\\Verify\\": "src/"}
+    }
+}

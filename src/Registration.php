@@ -3,11 +3,14 @@ namespace Twilio\Verify;
 
 use Authy\AuthyApi;
 use WP_Error;
+use WP_User;
 
 class Registration {
     
     const COUNTRY_CODE = 972;
     
+    const VIA_METHOD = 'sms';
+
     protected static $uuid;
     
     protected static $phone;
@@ -83,7 +86,7 @@ class Registration {
 
     public function startPhoneVerification( WP_Error $errors ) {
         $authyApi = new AuthyApi( $this->getApiKey() );
-        $res = $authyApi->phoneVerificationStart( $this->getPhone(), self::COUNTRY_CODE, 'sms' );
+        $res = $authyApi->phoneVerificationStart( $this->getPhone(), self::COUNTRY_CODE, self::VIA_METHOD );
 
         if ( $res->ok() ) {
             return $res->bodyvar('uuid');
@@ -111,17 +114,22 @@ class Registration {
     }
     
     public function preventUnverifiedUserLogin( $userdata ) {
-        $preventAccess = ! is_wp_error( $userdata );
-        $preventAccess = $preventAccess && user_can( $userdata->ID, get_option( 'default_role' ) );
-        $preventAccess = $preventAccess && ! get_user_meta( $userdata->ID, 'verified', true );
-        
-        if ( $preventAccess ) {
+        if ( ! is_wp_error( $userdata ) && ! $this->isVerified( $userdata ) ) {
             $uuid = get_user_meta( $userdata->ID, 'uuid', true );
             wp_redirect( site_url( "wp-login.php?action=verify&uuid={$uuid}" ) );
             exit();
         }
         
         return $userdata;
+    }
+
+    public function isVerified( WP_User $user ) {
+        return ! in_array( get_option( 'default_role' ), (array) $user->roles ) || get_user_meta( $user->ID, 'verified', true );
+    }
+
+    public function setVerified( $user_id, $verified ) {
+        update_user_meta( $user_id, 'verified', $verified );
+        return $this;
     }
     
     public function beforeRegistration( $sanitized_user_login, $user_email, WP_Error $errors ) {
@@ -148,7 +156,7 @@ class Registration {
         if ( $password = $this->getPassword() ) {
             remove_action( 'after_password_reset', 'wp_password_change_notification' );
             reset_password( $user, $password );
-            update_user_meta( $user_id, 'verified', false );
+            $this->setVerified( $user_id, false );
         }
 
         if ( $phone = $this->getPhone() ) {
@@ -162,6 +170,22 @@ class Registration {
         }
     }
 
+    public function autoLogin( $user_id ) {
+        $autoLogin = get_option( 'twilio_auto_login' );
+
+        if ( $autoLogin ) {
+            wp_clear_auth_cookie();
+            wp_set_current_user( $user_id );
+            wp_set_auth_cookie( $user_id );
+        }
+        
+        return $this;
+    }
+
+    public function afterVerificationRedirectUrl() {
+        return is_user_logged_in() ? home_url() : 'wp-login.php?registration=verified';
+    }
+
     public function showVerificationForm() {
         $uuid = '';
         $errors = new WP_Error();
@@ -172,12 +196,11 @@ class Registration {
             if ( $user = $this->getUserByUuid( $uuid ) ) {
                 $phone = get_user_meta( $user->ID, 'user_phone', true );
                 if ( $this->checkVerificationCode( $phone, $code ) ) {
-                    update_user_meta( $user->ID, 'verified', true );
-                    wp_safe_redirect( 'wp-login.php?registration=verified' );
+                    $this->setVerified( $user->ID, true )->autoLogin( $user->ID );                  
+                    wp_safe_redirect( $this->afterVerificationRedirectUrl() );
                     exit();
-                } else {
-                    $errors->add( 'invalidcode', __( 'Verification code is incorrect.', 'twilio-sms' ) );
                 }
+                $errors->add( 'invalidcode', __( 'Verification code is incorrect.', 'twilio-sms' ) );
             }
         }
         

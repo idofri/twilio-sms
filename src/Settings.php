@@ -15,6 +15,7 @@ class Settings {
     
     public function registerSettings() {
         register_setting( 'twilio', 'twilio_api_key' );
+        register_setting( 'twilio', 'twilio_auto_login' );
     }
 
     public function addSettingsPage() {
@@ -41,9 +42,30 @@ class Settings {
                             <input type="password"
                                    class="regular-text ltr textright"
                                    name="twilio_api_key"
-                                   value="<?php echo esc_attr( get_option( 'twilio_api_key' ) ) ?>"
+                                   value="<?= esc_attr( get_option( 'twilio_api_key' ) ) ?>"
                             />
+                            <p class="description">
+                                <?php
+                                printf(
+                                    __( 'You must create a <a href="%s">new Verify application under your Twilio account</a> and put its API key here.', 'twilio-sms' ),
+                                    'https://www.twilio.com/docs/verify/api/applications'
+                                );
+                                ?>
+                            </p>
                         </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" colspan="2">     
+                            <label for="twilio_auto_login">
+                                <input type="checkbox"
+                                       id="twilio_auto_login"
+                                       name="twilio_auto_login"  
+                                       value="1"
+                                       <?php checked( '1', get_option( 'twilio_auto_login' ) ); ?>
+                                />
+                                <?php _e( 'Auto Login after verification', 'twilio-sms' ); ?>
+                            </label>
+                        </th>
                     </tr>
                 </table>
                 <?php submit_button(); ?>

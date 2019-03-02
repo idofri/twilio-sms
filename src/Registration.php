@@ -141,7 +141,7 @@ class Registration {
         
         if ( empty( $_POST['user_phone'] ) ) {
             $errors->add( 'empty_phone', __( '<strong>ERROR</strong>: Enter a phone number.', 'twilio-sms' ) );
-        } else {
+        } elseif ( ! $errors->has_errors() ) {
             $phone = sanitize_text_field( $_POST['user_phone'] );
             $uuid = $this->setPhone( $phone )->startPhoneVerification( $errors );
             if ( $uuid ) {
